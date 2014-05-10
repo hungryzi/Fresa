@@ -24,6 +24,8 @@
 		95D82618191E6B3200B1791C /* FresaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D82617191E6B3200B1791C /* FresaTests.m */; };
 		95D82623191E6C4A00B1791C /* ViewPhrasesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D82622191E6C4A00B1791C /* ViewPhrasesViewController.m */; };
 		95D82626191E6FB300B1791C /* Phrase.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D82625191E6FB300B1791C /* Phrase.m */; };
+		95D82629191E78A200B1791C /* AddPhraseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D82628191E78A200B1791C /* AddPhraseViewController.m */; };
+		95D8262C191E88B100B1791C /* AddPhraseMeaningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D8262B191E88B100B1791C /* AddPhraseMeaningViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +63,10 @@
 		95D82622191E6C4A00B1791C /* ViewPhrasesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewPhrasesViewController.m; sourceTree = "<group>"; };
 		95D82624191E6FB300B1791C /* Phrase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Phrase.h; sourceTree = "<group>"; };
 		95D82625191E6FB300B1791C /* Phrase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Phrase.m; sourceTree = "<group>"; };
+		95D82627191E78A200B1791C /* AddPhraseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPhraseViewController.h; sourceTree = "<group>"; };
+		95D82628191E78A200B1791C /* AddPhraseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPhraseViewController.m; sourceTree = "<group>"; };
+		95D8262A191E88B100B1791C /* AddPhraseMeaningViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPhraseMeaningViewController.h; sourceTree = "<group>"; };
+		95D8262B191E88B100B1791C /* AddPhraseMeaningViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPhraseMeaningViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +138,10 @@
 				95D82622191E6C4A00B1791C /* ViewPhrasesViewController.m */,
 				95D82624191E6FB300B1791C /* Phrase.h */,
 				95D82625191E6FB300B1791C /* Phrase.m */,
+				95D82627191E78A200B1791C /* AddPhraseViewController.h */,
+				95D82628191E78A200B1791C /* AddPhraseViewController.m */,
+				95D8262A191E88B100B1791C /* AddPhraseMeaningViewController.h */,
+				95D8262B191E88B100B1791C /* AddPhraseMeaningViewController.m */,
 			);
 			path = Fresa;
 			sourceTree = "<group>";
@@ -266,8 +276,10 @@
 				95D82603191E6B3200B1791C /* ViewController.m in Sources */,
 				95D825FA191E6B3200B1791C /* AppDelegate.m in Sources */,
 				95D82623191E6C4A00B1791C /* ViewPhrasesViewController.m in Sources */,
+				95D8262C191E88B100B1791C /* AddPhraseMeaningViewController.m in Sources */,
 				95D825F6191E6B3200B1791C /* main.m in Sources */,
 				95D82626191E6FB300B1791C /* Phrase.m in Sources */,
+				95D82629191E78A200B1791C /* AddPhraseViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -482,6 +494,7 @@
 				95D8261D191E6B3200B1791C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		95D8261E191E6B3200B1791C /* Build configuration list for PBXNativeTarget "FresaTests" */ = {
 			isa = XCConfigurationList;
@@ -490,6 +503,7 @@
 				95D82620191E6B3200B1791C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

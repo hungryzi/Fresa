@@ -8,11 +8,13 @@
 
 #import "ViewPhrasesViewController.h"
 #import "Phrase.h"
+#import "AddPhraseViewController.h"
 
 @interface ViewPhrasesViewController ()
 
 @property (strong) UITableView *tableView;
 @property (copy) NSArray *phrases;
+@property (strong) UIButton *addButton;
 
 @end
 
@@ -31,19 +33,85 @@
 {
     [super viewDidLoad];
     
-    self.title = @"Phrases";
+    self.title = @"All";
     
     [self setupData];
     [self setupTableView];
+    [self setupAddButton];
+}
+
+- (void)setupAddButton
+{
+    self.addButton = [[UIButton alloc] initWithFrame: CGRectMake(0, 0, 20, 20)];
+    [self.addButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.addButton setTitle: @"Add" forState: UIControlStateNormal];
+    [self.addButton sizeToFit];
+
+    [self.addButton addTarget: self action: @selector(addButtonTapped:) forControlEvents: UIControlEventTouchUpInside];
+
+    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(addingPhraseNotification:) name: @"addingPhrase" object: nil];
+}
+
+- (void) addButtonTapped: (UIButton *) button {
+    AddPhraseViewController *addViewController = [[AddPhraseViewController alloc] init];
+    [self.navigationController pushViewController: addViewController animated: YES];
+}
+
+- (void) addingPhraseNotification: (NSNotification *) notification {
+    NSDictionary *userInfo = notification.userInfo;
+    NSString *original = userInfo[@"original"];
+    [self addPhrase: original];
+}
+
+- (void) viewWillAppear:(BOOL)animated {
+    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView: self.addButton];
+    self.navigationItem.rightBarButtonItem = barButtonItem;
+}
+
+- (void) addPhrase: (NSString *) original
+{
+    if ([original isEqualToString: @""])
+        return;
+
+    Phrase *phrase = [[Phrase alloc] initWithOriginal: original meaning: @"There is no meaning to nothing"];
+    [self insertToDataSource: phrase];
+    [self insertRowAt: (self.phrases.count - 1)];
+
+//    [self saveToDisk];
+}
+
+- (void)insertToDataSource: (Phrase *) phrase
+{
+    NSMutableArray *mutableArray = [NSMutableArray arrayWithArray: self.phrases];
+    [mutableArray addObject: phrase];
+    self.phrases = mutableArray;
+}
+
+- (void)insertRowAt: (int) index
+{
+    [self.tableView beginUpdates];
+    [self.tableView insertRowsAtIndexPaths: [NSArray arrayWithObject: [NSIndexPath indexPathForRow: index inSection: 0]] withRowAnimation: UITableViewRowAnimationFade];
+    [self.tableView endUpdates];
+}
+
+- (void)deleteFromDataSource: (NSInteger) index
+{
+    NSMutableArray *mutableArray = [NSMutableArray arrayWithArray: self.phrases];
+    [mutableArray removeObjectAtIndex: index];
+    self.phrases = mutableArray;
+}
+
+- (void)deleteRowAt: (NSIndexPath *) index
+{
+    [self.tableView beginUpdates];
+    [self.tableView deleteRowsAtIndexPaths: [NSArray arrayWithObject: index] withRowAnimation: UITableViewRowAnimationFade];
+    [self.tableView endUpdates];
 }
 
 - (void)setupData
 {
-    Phrase *phrase1 = [[Phrase alloc] init];
-    phrase1.original = @"clean";
-    Phrase *phrase2 = [[Phrase alloc] init];
-    phrase2.original = @"dirty";
-    
+    Phrase *phrase1 = [[Phrase alloc] initWithOriginal: @"clean" meaning: @"There is no meaning to nothing"];
+    Phrase *phrase2 = [[Phrase alloc] initWithOriginal: @"dirty" meaning: @"There is no meaning to nothing"];
     self.phrases = [NSArray arrayWithObjects: phrase1, phrase2, nil];
 }
 
@@ -69,18 +137,12 @@
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        //add code here for when you hit delete
-        NSMutableArray *mutableArray = [NSMutableArray arrayWithArray: self.phrases];
-        [mutableArray removeObjectAtIndex: indexPath.row];
-        self.phrases = mutableArray;
-        [self.tableView beginUpdates];
+    if (editingStyle != UITableViewCellEditingStyleDelete)
+        return;
 
-        [self.tableView deleteRowsAtIndexPaths: [NSArray arrayWithObject: indexPath] withRowAnimation: UITableViewRowAnimationFade];
-
-        [self.tableView endUpdates];
+    [self deleteFromDataSource: indexPath.row];
+    [self deleteRowAt: indexPath];
 //        [self saveToDisk];
-    }
 }
 
 - (void)didReceiveMemoryWarning

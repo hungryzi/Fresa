@@ -13,4 +13,6 @@
 @property (strong) NSString *original;
 @property (strong) NSString *meaning;
 
+- (id)initWithOriginal: (NSString *)original meaning:(NSString *)meaning;
+
 @end

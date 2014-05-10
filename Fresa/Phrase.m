@@ -10,4 +10,14 @@
 
 @implementation Phrase
 
+- (id)initWithOriginal: (NSString *)original meaning:(NSString *)meaning
+{
+    self = [super init];
+
+    self.original = original;
+    self.meaning = meaning;
+
+    return self;
+}
+
 @end
