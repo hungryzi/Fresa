@@ -68,6 +68,21 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        //add code here for when you hit delete
+        NSMutableArray *mutableArray = [NSMutableArray arrayWithArray: self.phrases];
+        [mutableArray removeObjectAtIndex: indexPath.row];
+        self.phrases = mutableArray;
+        [self.tableView beginUpdates];
+
+        [self.tableView deleteRowsAtIndexPaths: [NSArray arrayWithObject: indexPath] withRowAnimation: UITableViewRowAnimationFade];
+
+        [self.tableView endUpdates];
+//        [self saveToDisk];
+    }
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
