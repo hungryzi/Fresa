@@ -22,6 +22,8 @@
 		95D8260E191E6B3200B1791C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95D825ED191E6B3200B1791C /* UIKit.framework */; };
 		95D82616191E6B3200B1791C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 95D82614191E6B3200B1791C /* InfoPlist.strings */; };
 		95D82618191E6B3200B1791C /* FresaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D82617191E6B3200B1791C /* FresaTests.m */; };
+		95D82623191E6C4A00B1791C /* ViewPhrasesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D82622191E6C4A00B1791C /* ViewPhrasesViewController.m */; };
+		95D82626191E6FB300B1791C /* Phrase.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D82625191E6FB300B1791C /* Phrase.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,10 @@
 		95D82613191E6B3200B1791C /* FresaTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FresaTests-Info.plist"; sourceTree = "<group>"; };
 		95D82615191E6B3200B1791C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		95D82617191E6B3200B1791C /* FresaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FresaTests.m; sourceTree = "<group>"; };
+		95D82621191E6C4A00B1791C /* ViewPhrasesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewPhrasesViewController.h; sourceTree = "<group>"; };
+		95D82622191E6C4A00B1791C /* ViewPhrasesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewPhrasesViewController.m; sourceTree = "<group>"; };
+		95D82624191E6FB300B1791C /* Phrase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Phrase.h; sourceTree = "<group>"; };
+		95D82625191E6FB300B1791C /* Phrase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Phrase.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +128,10 @@
 				95D82602191E6B3200B1791C /* ViewController.m */,
 				95D82604191E6B3200B1791C /* Images.xcassets */,
 				95D825F0191E6B3200B1791C /* Supporting Files */,
+				95D82621191E6C4A00B1791C /* ViewPhrasesViewController.h */,
+				95D82622191E6C4A00B1791C /* ViewPhrasesViewController.m */,
+				95D82624191E6FB300B1791C /* Phrase.h */,
+				95D82625191E6FB300B1791C /* Phrase.m */,
 			);
 			path = Fresa;
 			sourceTree = "<group>";
@@ -255,7 +265,9 @@
 			files = (
 				95D82603191E6B3200B1791C /* ViewController.m in Sources */,
 				95D825FA191E6B3200B1791C /* AppDelegate.m in Sources */,
+				95D82623191E6C4A00B1791C /* ViewPhrasesViewController.m in Sources */,
 				95D825F6191E6B3200B1791C /* main.m in Sources */,
+				95D82626191E6FB300B1791C /* Phrase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

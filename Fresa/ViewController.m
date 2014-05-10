@@ -7,8 +7,11 @@
 //
 
 #import "ViewController.h"
+#import "ViewPhrasesViewController.h"
 
 @interface ViewController ()
+
+@property ViewPhrasesViewController *viewPhrasesViewController;
 
 @end
 
@@ -17,7 +20,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    
+    self.viewPhrasesViewController = [ViewPhrasesViewController new];
+    
+    // Navigation view
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController: self.viewPhrasesViewController];
+    
+    [self.view addSubview: navigationController.view];
+
+    // TODO: remove this
+    navigationController.view.layer.borderColor = [UIColor redColor].CGColor;
+    navigationController.view.layer.borderWidth = 1;
+    
+    [self addChildViewController: navigationController];
 }
 
 - (void)didReceiveMemoryWarning
