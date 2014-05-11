@@ -27,11 +27,6 @@
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController: self.viewPhrasesViewController];
     
     [self.view addSubview: navigationController.view];
-
-    // TODO: remove this
-    navigationController.view.layer.borderColor = [UIColor redColor].CGColor;
-    navigationController.view.layer.borderWidth = 1;
-    
     [self addChildViewController: navigationController];
 }
 

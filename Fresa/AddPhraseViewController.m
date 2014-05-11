@@ -39,8 +39,7 @@
 
 - (void)setupTextField
 {
-    self.textField = [[UITextField alloc] initWithFrame: CGRectMake(0, self.navigationController.navigationBar.frame.size.height + 20, 320, 40)];
-    self.textField.backgroundColor = [UIColor blueColor];
+    self.textField = [[UITextField alloc] initWithFrame: CGRectMake(5, self.navigationController.navigationBar.frame.size.height + 20, 320, 40)];
     [self.view addSubview: self.textField];
 }
 
@@ -69,6 +68,7 @@
 {
     UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView: self.continueButton];
     self.navigationItem.rightBarButtonItem = barButtonItem;
+    [self.textField becomeFirstResponder];
 }
 
 /*

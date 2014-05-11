@@ -35,7 +35,7 @@
     
     self.title = @"All";
     
-    [self setupData];
+    [self loadFromDisk];
     [self setupTableView];
     [self setupAddButton];
 }
@@ -60,7 +60,8 @@
 - (void) addingPhraseNotification: (NSNotification *) notification {
     NSDictionary *userInfo = notification.userInfo;
     NSString *original = userInfo[@"original"];
-    [self addPhrase: original];
+    NSString *meaning = userInfo[@"meaning"];
+    [self addPhraseWithOriginal:original andMeaning:meaning];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -68,29 +69,35 @@
     self.navigationItem.rightBarButtonItem = barButtonItem;
 }
 
-- (void) addPhrase: (NSString *) original
+- (void) addPhraseWithOriginal: (NSString *)original andMeaning: (NSString *)meaning
 {
     if ([original isEqualToString: @""])
         return;
 
-    Phrase *phrase = [[Phrase alloc] initWithOriginal: original meaning: @"There is no meaning to nothing"];
-    [self insertToDataSource: phrase];
-    [self insertRowAt: (self.phrases.count - 1)];
+    Phrase *phrase = [[Phrase alloc] initWithOriginal:original meaning:meaning];
+    [self insertPhrase: phrase];
 
-//    [self saveToDisk];
+    [self saveToDisk];
+}
+
+- (void)insertPhrase: (Phrase *) phrase
+{
+    [self insertToDataSource: phrase];
+    [self insertRowOnTop];
 }
 
 - (void)insertToDataSource: (Phrase *) phrase
 {
-    NSMutableArray *mutableArray = [NSMutableArray arrayWithArray: self.phrases];
+    NSMutableArray *mutableArray = [NSMutableArray new];
     [mutableArray addObject: phrase];
+    [mutableArray addObjectsFromArray: self.phrases];
     self.phrases = mutableArray;
 }
 
-- (void)insertRowAt: (int) index
+- (void)insertRowOnTop
 {
     [self.tableView beginUpdates];
-    [self.tableView insertRowsAtIndexPaths: [NSArray arrayWithObject: [NSIndexPath indexPathForRow: index inSection: 0]] withRowAnimation: UITableViewRowAnimationFade];
+    [self.tableView insertRowsAtIndexPaths: [NSArray arrayWithObject: [NSIndexPath indexPathForRow: 0 inSection: 0]] withRowAnimation: UITableViewRowAnimationFade];
     [self.tableView endUpdates];
 }
 
@@ -106,13 +113,6 @@
     [self.tableView beginUpdates];
     [self.tableView deleteRowsAtIndexPaths: [NSArray arrayWithObject: index] withRowAnimation: UITableViewRowAnimationFade];
     [self.tableView endUpdates];
-}
-
-- (void)setupData
-{
-    Phrase *phrase1 = [[Phrase alloc] initWithOriginal: @"clean" meaning: @"There is no meaning to nothing"];
-    Phrase *phrase2 = [[Phrase alloc] initWithOriginal: @"dirty" meaning: @"There is no meaning to nothing"];
-    self.phrases = [NSArray arrayWithObjects: phrase1, phrase2, nil];
 }
 
 - (void)setupTableView
@@ -142,7 +142,35 @@
 
     [self deleteFromDataSource: indexPath.row];
     [self deleteRowAt: indexPath];
-//        [self saveToDisk];
+    [self saveToDisk];
+}
+
+- (void) saveToDisk
+{
+    NSMutableDictionary *toSaved = [NSMutableDictionary new];
+
+    [self.phrases enumerateObjectsUsingBlock:^(Phrase *phrase, NSUInteger idx, BOOL *stop) {
+        [toSaved setObject:phrase.original forKey:phrase.meaning];
+    }];
+
+    [[NSUserDefaults standardUserDefaults] setObject: toSaved forKey: @"phrases"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (void)loadFromDisk
+{
+    NSDictionary *dict = [[NSUserDefaults standardUserDefaults] objectForKey: @"phrases"];
+    NSMutableArray *phrases = [NSMutableArray array];
+
+    [dict enumerateKeysAndObjectsUsingBlock: ^(NSString *original, NSString *meaning, BOOL *stop) {
+        Phrase *phrase = [[Phrase alloc] initWithOriginal:original meaning:meaning];
+        phrase.original = original;
+        phrase.meaning = meaning;
+
+        [phrases addObject: phrase];
+    }];
+
+    self.phrases = phrases;
 }
 
 - (void)didReceiveMemoryWarning

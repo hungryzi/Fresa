@@ -10,7 +10,4 @@
 
 @interface ViewPhrasesViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
-//- (void) saveToDisk;
-//- (void) loadFromDisk;
-
 @end
