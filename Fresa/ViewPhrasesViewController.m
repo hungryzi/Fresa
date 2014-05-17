@@ -9,10 +9,12 @@
 #import "ViewPhrasesViewController.h"
 #import "Phrase.h"
 #import "AddPhraseViewController.h"
+#import "PlayPhrasesViewController.h"
 
 @interface ViewPhrasesViewController ()
 
 @property (strong) UITableView *tableView;
+@property (strong) UIToolbar *toolbar;
 @property (copy) NSArray *phrases;
 @property (strong) UIButton *addButton;
 
@@ -38,6 +40,7 @@
     [self loadFromDisk];
     [self setupTableView];
     [self setupAddButton];
+    [self setupToolBar];
 }
 
 - (void)setupAddButton
@@ -50,6 +53,22 @@
     [self.addButton addTarget: self action: @selector(addButtonTapped:) forControlEvents: UIControlEventTouchUpInside];
 
     [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(addingPhraseNotification:) name: @"addingPhrase" object: nil];
+}
+
+- (void)setupToolBar
+{
+    UIBarButtonItem *playButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay target:self action:@selector(playAction:)];
+
+    NSArray* toolbarItems = [NSArray arrayWithObjects: playButton, nil];
+    
+    self.toolbarItems = toolbarItems;
+    self.navigationController.toolbarHidden = NO;
+}
+
+- (void) playAction: (UIButton *) button
+{
+    PlayPhrasesViewController *playViewController = [[PlayPhrasesViewController alloc] init];
+    [self.navigationController pushViewController: playViewController animated: YES];
 }
 
 - (void) addButtonTapped: (UIButton *) button {

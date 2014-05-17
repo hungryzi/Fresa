@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		957FE0D21921BE6900224BD3 /* PlayPhrasesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 957FE0D11921BE6900224BD3 /* PlayPhrasesViewController.m */; };
 		95D825EA191E6B3200B1791C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95D825E9191E6B3200B1791C /* Foundation.framework */; };
 		95D825EC191E6B3200B1791C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95D825EB191E6B3200B1791C /* CoreGraphics.framework */; };
 		95D825EE191E6B3200B1791C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95D825ED191E6B3200B1791C /* UIKit.framework */; };
@@ -39,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		957FE0D01921BE6900224BD3 /* PlayPhrasesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayPhrasesViewController.h; sourceTree = "<group>"; };
+		957FE0D11921BE6900224BD3 /* PlayPhrasesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayPhrasesViewController.m; sourceTree = "<group>"; };
 		95D825E6191E6B3200B1791C /* Fresa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fresa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95D825E9191E6B3200B1791C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		95D825EB191E6B3200B1791C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -142,6 +145,8 @@
 				95D82628191E78A200B1791C /* AddPhraseViewController.m */,
 				95D8262A191E88B100B1791C /* AddPhraseMeaningViewController.h */,
 				95D8262B191E88B100B1791C /* AddPhraseMeaningViewController.m */,
+				957FE0D01921BE6900224BD3 /* PlayPhrasesViewController.h */,
+				957FE0D11921BE6900224BD3 /* PlayPhrasesViewController.m */,
 			);
 			path = Fresa;
 			sourceTree = "<group>";
@@ -274,6 +279,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				95D82603191E6B3200B1791C /* ViewController.m in Sources */,
+				957FE0D21921BE6900224BD3 /* PlayPhrasesViewController.m in Sources */,
 				95D825FA191E6B3200B1791C /* AppDelegate.m in Sources */,
 				95D82623191E6C4A00B1791C /* ViewPhrasesViewController.m in Sources */,
 				95D8262C191E88B100B1791C /* AddPhraseMeaningViewController.m in Sources */,
